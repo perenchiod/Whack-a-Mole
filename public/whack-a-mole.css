@@ -1,20 +1,28 @@
 #body{
 	margin-left: auto;
 	margin-right: auto;
-	border: dotted red 2px;
-	width: 750px;
-	height: 750px;
+	width: 650px;
+	height: 650px;
+	border: outset lawngreen 3px;
+	cursor:url(autobots.ico), auto;
 }
 .squares {
-	border: solid black 1px;
-	width: 248px;
-	height: 248px;
+	width: 214px;
+	height: 214px;
 	float: right;
 
 }
 .mole {
-	width: 248px;
-	height: 248px;
-	border-radius: 248px;
-	background-color: lawngreen;
+	visibility: hidden;
+	background-image: url("shia_labeouf.jpg");
+	background-size: 214px 214px;
+}
+h1 {
+	font-size: 39px;
+	margin-left: 540px;
+	margin-right: auto;
+	color: black;
+}
+h3 {
+	color: blue;
 }
