@@ -2,18 +2,68 @@
 <head>
 	<title>Whack-A-Mole</title>
 	<link rel="stylesheet" type="text/css" href="whack-a-mole.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="squares"></div>
-	<div class="squares"></div>
-	<div class="squares"></div>
-	<div class="squares"></div>
-	<div class="squares"></div>
-	<div class="squares"></div>
-	<div class="squares"></div>
-	<div class="squares"></div>
-	<div class="squares"></div>
+	<button id = "startGame">Start Game</button>
+	<div id = "body">
+		<div class="squares" id="0"></div>
+		<div class="squares" id="1"></div>
+		<div class="squares" id="2"></div>
+		<div class="squares" id="3"></div>
+		<div class="squares" id="4"></div>
+		<div class="squares" id="5"></div>
+		<div class="squares" id="6"></div>
+		<div class="squares" id="7"></div>
+		<div class="squares" id="8"></div>
+	</div>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+	<script>
+		var holes = [0,1,2,3,4,5,6,7,8];
+		var randomSquare;
+		var clicked = 0;
+
+		$("#startGame").one("click" , function () {
+			function pickRandomSquare () {
+				var squaresRef = $(".squares");
+				randomSquare = Math.floor(Math.random() * holes.length);
+				randomSquare = "#" + randomSquare;
+				console.log(randomSquare);
+			}
+
+			function animateGuy () {
+				pickRandomSquare();
+				$(randomSquare).addClass("mole");
+				logClick();
+				setTimeout(function () {
+					clicked -= 1;
+					$(".mole").off('click');
+					$(randomSquare).removeClass("mole");
+				}, 910);
+			}
+
+			function changeHoles() {
+				setInterval(function () {
+					animateGuy();
+				}, 950);			
+			}
+
+			function logClick () {
+				$(".mole").click(function () {
+					var test = clicked;
+					console.log("clicked")
+					clicked+=3;
+					$("#startGame").text(clicked);
+					if(test != clicked) {
+						$(".mole").off('click');
+					}
+					$(randomSquare).removeClass("mole");
+				});
+			}	
+			changeHoles();
+		});
+
+	</script>
 </body>
 </html>
